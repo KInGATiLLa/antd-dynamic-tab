@@ -13,7 +13,7 @@ build({
     : {
         onRebuild(error) {
           if (!error) {
-            console.log('Build succeeded');
+            console.log('Build амжилттай хийгдлээ');
           }
         },
       },
@@ -21,7 +21,7 @@ build({
   minify: isProduction,
   entryPoints: [path.resolve(__dirname, 'src/index.js')],
   bundle: true,
-  inject: ['./react-shim.js'],
+  // inject: ['./react-shim.js'],
   define: {'process.env.NODE_ENV': isProduction ? '"production"' : '"development"'},
   outdir: path.resolve(__dirname, outDirectory),
   loader: {
@@ -36,3 +36,14 @@ build({
     }),
   ],
 }).catch((e) => console.error(e.message));
+
+async function serve() {
+  console.log('http://localhost:5000/ хаяг дээр сервэр ажиллаж байна...');
+  const servor = require('servor');
+  await servor({
+    browser: true,
+    root: outDirectory,
+    port: 5000,
+  });
+}
+serve();
