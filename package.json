@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/KInGATiLLa/antd-dynamic-tab.git"
   },
-  "keywords": [],
+  "keywords": ["react", "antd", "ant design", "esbuild"],
   "author": "KInGATiLLa",
   "license": "MIT",
   "bugs": {
