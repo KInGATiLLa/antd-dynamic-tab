@@ -5,7 +5,7 @@ import {MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined, VideoCameraOutlined,
 import '../node_modules/antd/dist/antd.css';
 import '../node_modules/antd/lib/style/index.css';
 import './style.less';
-import DynamicTab from '../dist/index';
+import DynamicTab from './lib/index';
 
 const {Header, Sider, Content} = Layout;
 
