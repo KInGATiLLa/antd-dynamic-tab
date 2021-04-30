@@ -1,0 +1,6 @@
+node_modules
+/dist
+/lib
+/public/index.js
+/public/index.css
+/public/index.js.map
