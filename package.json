@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/react": "^17.0.4",
     "antd": "^4.15.3",
+    "chalk": "^4.1.1",
     "esbuild": "^0.11.16",
     "esbuild-plugin-less": "^1.0.5",
     "less": "^4.1.1",
