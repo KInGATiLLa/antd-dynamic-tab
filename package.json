@@ -6,7 +6,12 @@
     "type": "git",
     "url": "git+https://github.com/KInGATiLLa/antd-dynamic-tab.git"
   },
-  "keywords": ["react", "antd", "ant design", "esbuild"],
+  "keywords": [
+    "react",
+    "antd",
+    "ant design",
+    "esbuild"
+  ],
   "author": "KInGATiLLa",
   "license": "MIT",
   "bugs": {
@@ -37,9 +42,9 @@
   "dependencies": {},
   "devDependencies": {
     "@types/react": "^17.0.4",
-    "antd": "^4.15.3",
+    "antd": "^4.15.4",
     "chalk": "^4.1.1",
-    "esbuild": "^0.11.16",
+    "esbuild": "^0.11.17",
     "esbuild-plugin-less": "^1.0.5",
     "less": "^4.1.1",
     "less-loader": "^8.1.1",
