@@ -36,7 +36,7 @@
     "build": "run-p build:*",
     "clean": "rimraf ./dist/*",
     "build:lib": "esbuild --bundle src/lib/index.js --define:process.env.NODE_ENV=\"production\" --minify-whitespace --outdir=dist --target=es2016 --format=esm --loader:.js=jsx --external:react --external:react-dom --external:antd",
-    "build:types": "tsc src/lib/index.js --declaration --allowJs --jsx react --moduleResolution node --target es2016 --emitDeclarationOnly --outFile dist/index.d.ts",
+    "build:types": "tsc src/lib/index.js -d --allowJs --jsx react --moduleResolution node --target es2016 --emitDeclarationOnly --esModuleInterop --outFile dist/index.d.ts",
     "publish": "npm publish"
   },
   "dependencies": {},
