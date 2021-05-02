@@ -1,6 +1,7 @@
 const {build} = require('esbuild');
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const {lessLoader} = require('esbuild-plugin-less');
 
 const outDirectory = 'public';
@@ -13,7 +14,7 @@ build({
     : {
         onRebuild(error) {
           if (!error) {
-            console.log('Build амжилттай хийгдлээ');
+            console.log(chalk.greenBright('Build амжилттай хийгдлээ...'));
           }
         },
       },
@@ -26,6 +27,7 @@ build({
   outdir: path.resolve(__dirname, outDirectory),
   loader: {
     '.js': 'jsx',
+    '.png': 'file',
   },
   plugins: [
     lessLoader({
@@ -38,7 +40,7 @@ build({
 }).catch((e) => console.error(e.message));
 
 async function serve() {
-  console.log('http://localhost:5000/ хаяг дээр сервэр ажиллаж байна...');
+  console.log(chalk.blue('Сервер http://localhost:5000/ хаяг дээр ажиллаж байна...'));
   const servor = require('servor');
   await servor({
     browser: true,

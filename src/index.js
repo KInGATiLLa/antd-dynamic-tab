@@ -5,6 +5,7 @@ import {MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined, VideoCameraOutlined,
 import '../node_modules/antd/dist/antd.css';
 import '../node_modules/antd/lib/style/index.css';
 import './style.less';
+import tabIcon from './assets/img/tab.png';
 import DynamicTab from './lib/index';
 
 const {Header, Sider, Content} = Layout;
@@ -16,19 +17,25 @@ const MainLayout = () => {
     <Layout id="custom-trigger">
       <Sider width={250} trigger={null} collapsible collapsed={collapsed} className="site-layout-sider">
         <div className="logo">
-          <div className="text">
-            <h3>{collapsed ? 'DT' : 'Dynamic Tab'}</h3>
-          </div>
+          {collapsed ? (
+            <div className="text">
+              <img src={tabIcon} alt="icon" width="32" height="32" />
+            </div>
+          ) : (
+            <div className="text">
+              <h3>Динамик таб</h3>
+            </div>
+          )}
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+        <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<UserOutlined />}>
-            Info
+            Багцын мэдээлэл adasad
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            Component
+            Туршилт
           </Menu.Item>
           <Menu.Item key="3" icon={<UploadOutlined />}>
-            Builder
+            Тохиргоо
           </Menu.Item>
         </Menu>
       </Sider>
