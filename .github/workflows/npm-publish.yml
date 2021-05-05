@@ -3,6 +3,11 @@
 
 name: Node.js Package
 
+
+# on:
+#   release:
+#     types: [created]
+
 on:
   workflow_dispatch:
     inputs:
