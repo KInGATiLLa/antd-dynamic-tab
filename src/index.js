@@ -29,7 +29,7 @@ const MainLayout = () => {
         </div>
         <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<UserOutlined />}>
-            Багцын мэдээлэл adasad
+            Багцын мэдээлэл
           </Menu.Item>
           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
             Туршилт
