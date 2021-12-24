@@ -1,18 +1,31 @@
-import React, {useState, useMemo, createElement} from 'react';
+import {useState, useMemo, createElement} from 'react';
 import {render} from 'react-dom';
 import {Layout, Menu, Button, Input, Tabs, Checkbox, Divider} from 'antd';
 import {MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined, VideoCameraOutlined, UploadOutlined} from '@ant-design/icons';
-import '../node_modules/antd/dist/antd.css';
-import '../node_modules/antd/lib/style/index.css';
+// import '../node_modules/antd/dist/antd.css';
+// import '../node_modules/antd/lib/style/index.css';
 import './style.less';
 import tabIcon from './assets/img/tab.png';
 import DynamicTab from './lib/index';
+import {Face1, Face2} from './face';
 
 const {Header, Sider, Content} = Layout;
 
 const MainLayout = () => {
+  console.log('API_URL :>> ', API_URL);
+  console.log('NODE_ENV :>> ', NODE_ENV);
   const [collapsed, setCollapsed] = useState(false);
   const toggle = () => setCollapsed((collapsed) => !collapsed);
+
+  const a = [1, 23, 4];
+
+  const b = null;
+
+  const g = b ?? 'asdad';
+
+  console.log('a :>> ', [...a, 4, 5]);
+  console.log('g :>> ', b?.g);
+
   return (
     <Layout id="custom-trigger">
       <Sider width={250} trigger={null} collapsible collapsed={collapsed} className="site-layout-sider">
@@ -23,6 +36,7 @@ const MainLayout = () => {
             </div>
           ) : (
             <div className="text">
+              <img src={tabIcon} alt="icon" width="32" height="32" />
               <h3>Динамик таб</h3>
             </div>
           )}
@@ -60,8 +74,8 @@ const MainLayout = () => {
               defaultActiveKey: '2',
             }}
             tabs={[
-              {key: '1', tab: 'Tab 1', icon: VideoCameraOutlined, content: <Divider orientation="center">Tab 1</Divider>},
-              {key: '2', tab: 'Tab 2', icon: UploadOutlined, content: <Divider orientation="center">Tab 2</Divider>},
+              {key: '1', tab: 'Tab 1', icon: VideoCameraOutlined, content: <Face1 />},
+              {key: '2', tab: 'Tab 2', icon: UploadOutlined, content: <Face2 />},
             ]}
           />
         </Content>

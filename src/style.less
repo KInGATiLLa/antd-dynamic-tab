@@ -1,9 +1,13 @@
+@import '../node_modules/antd/dist/antd.less';
+@import '../node_modules/antd/lib/style/themes/default.less';
 @import './variables.less';
+
 * {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -14,7 +18,7 @@ html, body {
     height: 100vh;
     position: fixed;
     left: 0;
-    background: white;
+    background: @primary-color;
   }
   .logo {
     height: 40px;
@@ -30,9 +34,10 @@ html, body {
         margin-top: 6px;
       }
       h3 {
-        margin: 8px 0 0 0;
+        margin: 5px 0 0 0;
         overflow: hidden;
-        transition: all .3s;
+        transition: all 0.3s;
+        color: @color;
       }
     }
   }
@@ -58,5 +63,3 @@ html, body {
     }
   }
 }
-
-

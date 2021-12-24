@@ -1,15 +1,34 @@
-const {build} = require('esbuild');
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
-const {lessLoader} = require('esbuild-plugin-less');
+import {build, serve} from 'esbuild';
+import fs from 'fs';
+import path from 'path';
+import chalk from 'chalk';
+import {lessLoader} from 'esbuild-plugin-less';
+import servor from 'servor';
 
-const outDirectory = 'public';
+const isProd = process.env.NODE_ENV === 'production';
 
-const isProduction = process.env.NODE_ENV === 'production';
+const outDirectory = isProd ? 'dist' : 'static';
+const publicDir = 'public';
+
+const __dirname = path.resolve();
+
+const staticAssetResolverPlugin = {
+  name: 'staticAssetResolver',
+  setup(build) {
+    // Redirect all paths starting with "images/" to "./public/images/"
+    build.onResolve({filter: /^static\//}, (args) => {
+      return {path: path.join(args.resolveDir, publicDir, args.path)};
+    });
+    // Mark all paths starting with "http://" or "https://" as external
+    build.onResolve({filter: /^https?:\/\//}, (args) => {
+      return {path: args.path, external: true};
+    });
+  },
+};
 
 build({
-  watch: isProduction
+  charset: 'utf8',
+  watch: isProd
     ? false
     : {
         onRebuild(error) {
@@ -18,34 +37,44 @@ build({
           }
         },
       },
-  sourcemap: !isProduction,
-  minify: isProduction,
+  format: 'esm',
+  target: 'esnext',
+  sourcemap: false,
+  treeShaking: true,
+  assetNames: '[name]_[hash]',
+  chunkNames: '[name]-[hash]',
+  inject: [path.resolve(__dirname, 'react-shim.js')],
+  minify: isProd,
   entryPoints: [path.resolve(__dirname, 'src/index.js')],
   bundle: true,
-  // inject: ['./react-shim.js'],
-  define: {'process.env.NODE_ENV': isProduction ? '"production"' : '"development"'},
-  outdir: path.resolve(__dirname, outDirectory),
+  define: {
+    NODE_ENV: isProd ? '"production"' : '"development"',
+    API_URL: '"my-api"',
+  },
+  outdir: path.resolve(__dirname, publicDir, outDirectory),
   loader: {
     '.js': 'jsx',
     '.png': 'file',
+    '.html': 'file',
   },
   plugins: [
     lessLoader({
+      javascriptEnabled: true,
       globalVars: {
         'my-color': '#000',
         'primary-color': '#0049A0',
       },
     }),
+    staticAssetResolverPlugin,
   ],
 }).catch((e) => console.error(e.message));
 
-async function serve() {
+async function startServer() {
   console.log(chalk.blue('Сервер http://localhost:5000/ хаяг дээр ажиллаж байна...'));
-  const servor = require('servor');
   await servor({
     browser: true,
-    root: outDirectory,
+    root: publicDir,
     port: 5000,
   });
 }
-serve();
+startServer();
